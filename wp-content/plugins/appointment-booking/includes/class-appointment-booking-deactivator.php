@@ -1,16 +1,28 @@
 <?php
 /**
- * Handles plugin deactivation.
+ * Plugin deactivator — cleanup on deactivation.
+ *
+ * @package AppointmentBooking
  */
+
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit;
 }
 
+/**
+ * Class Appointment_Booking_Deactivator
+ *
+ * Handles cleanup when the plugin is deactivated.
+ * Tables are intentionally preserved so data is not lost.
+ */
 class Appointment_Booking_Deactivator {
 
+	/**
+	 * Run on plugin deactivation.
+	 *
+	 * @return void
+	 */
 	public static function deactivate() {
-		// Place any deactivation code here,
-		// such as removing cron jobs, flushing rewrite rules, etc.
-		// e.g.: flush_rewrite_rules();
+		// Reserved for future cleanup (cron jobs, transients, etc.).
 	}
 }

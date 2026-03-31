@@ -1,41 +1,58 @@
 <?php
 /**
- * Handles plugin activation (database table creation).
+ * Plugin activator — creates database tables on activation.
+ *
+ * @package AppointmentBooking
  */
+
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit;
 }
 
+/**
+ * Class Appointment_Booking_Activator
+ *
+ * Handles one-time setup when the plugin is activated.
+ */
 class Appointment_Booking_Activator {
 
+	/**
+	 * Run on plugin activation.
+	 *
+	 * Creates the `appointments` and `vacation_dates` tables
+	 * using WordPress's dbDelta for safe, idempotent migrations.
+	 *
+	 * @return void
+	 */
 	public static function activate() {
 		global $wpdb;
+
 		$charset_collate = $wpdb->get_charset_collate();
 
-		// Create appointments table
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+
+		// -- Appointments table --
 		$appointments_table = $wpdb->prefix . 'appointments';
 		$sql_appointments   = "CREATE TABLE IF NOT EXISTS $appointments_table (
-            id mediumint(9) NOT NULL AUTO_INCREMENT,
-            appointment_date date NOT NULL,
-            appointment_time varchar(50) NOT NULL,
-            appointment_name varchar(100) NOT NULL,
-            appointment_phone varchar(20) NOT NULL,
-            appointment_comments text,
-            user_email varchar(100) NOT NULL,
-            PRIMARY KEY (id)
-        ) $charset_collate;";
-
-		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+			id            MEDIUMINT(9)  NOT NULL AUTO_INCREMENT,
+			appointment_date    DATE          NOT NULL,
+			appointment_time    VARCHAR(50)   NOT NULL,
+			appointment_name    VARCHAR(100)  NOT NULL,
+			appointment_phone   VARCHAR(20)   NOT NULL,
+			appointment_comments TEXT,
+			user_email          VARCHAR(100)  NOT NULL,
+			PRIMARY KEY (id)
+		) $charset_collate;";
 		dbDelta( $sql_appointments );
 
-		// Create vacation_dates table (if not exists)
+		// -- Vacation dates table --
 		$vacation_table = $wpdb->prefix . 'vacation_dates';
 		$sql_vacation   = "CREATE TABLE IF NOT EXISTS $vacation_table (
-            id mediumint(9) NOT NULL AUTO_INCREMENT,
-            vacation_start_date date NOT NULL,
-            vacation_end_date date NOT NULL,
-            PRIMARY KEY (id)
-        ) $charset_collate;";
+			id                  MEDIUMINT(9)  NOT NULL AUTO_INCREMENT,
+			vacation_start_date DATE          NOT NULL,
+			vacation_end_date   DATE          NOT NULL,
+			PRIMARY KEY (id)
+		) $charset_collate;";
 		dbDelta( $sql_vacation );
 	}
 }

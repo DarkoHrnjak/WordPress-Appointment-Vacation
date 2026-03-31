@@ -1,28 +1,32 @@
 <?php
 /**
  * Plugin Name:       Appointment Booking
- * Plugin URI:        https://example.com
- * Description:       Custom appointment booking functionality.
- * Version:           1.0
- * Author:            Darko
- * Author URI:        https://example.com
+ * Plugin URI:        https://github.com/DarkoHrnjak/WordPress-Appointment-Vacation
+ * Description:       A premium appointment booking system with vacation management, AJAX time slots, and modern glassmorphic UI.
+ * Version:           2.0.0
+ * Author:            Darko Hrnjak
+ * Author URI:        https://github.com/DarkoHrnjak
  * Text Domain:       appointment-booking
  * Domain Path:       /languages
+ * Requires PHP:      7.4
+ * Requires at least: 5.6
+ *
+ * @package AppointmentBooking
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit;
 }
 
 /**
- * Define constants
+ * Plugin constants.
  */
 define( 'APPOINTMENT_BOOKING_VERSION', '2.0.0' );
 define( 'APPOINTMENT_BOOKING_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'APPOINTMENT_BOOKING_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 /**
- * Include necessary files
+ * Autoload plugin files.
  */
 require_once APPOINTMENT_BOOKING_PLUGIN_DIR . 'includes/class-appointment-booking-activator.php';
 require_once APPOINTMENT_BOOKING_PLUGIN_DIR . 'includes/class-appointment-booking-deactivator.php';
@@ -31,23 +35,21 @@ require_once APPOINTMENT_BOOKING_PLUGIN_DIR . 'includes/appointment-booking-fron
 require_once APPOINTMENT_BOOKING_PLUGIN_DIR . 'includes/appointment-booking-ajax.php';
 
 /**
- * Register activation and deactivation hooks
+ * Activation & deactivation hooks.
  */
 register_activation_hook( __FILE__, array( 'Appointment_Booking_Activator', 'activate' ) );
 register_deactivation_hook( __FILE__, array( 'Appointment_Booking_Deactivator', 'deactivate' ) );
 
 /**
- * Plugin initialization
+ * Bootstrap the plugin.
+ *
+ * Registers all admin, frontend, and AJAX hooks.
+ *
+ * @return void
  */
-function run_appointment_booking() {
-	// Admin setup
+function appointment_booking_run() {
 	appointment_booking_admin_init();
-
-	// Frontend setup
 	appointment_booking_frontend_init();
-
-	// AJAX setup
 	appointment_booking_ajax_init();
 }
-run_appointment_booking();
-
+appointment_booking_run();
