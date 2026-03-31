@@ -1,0 +1,104 @@
+/* Frontend-specific styling for the form */
+.appointment-booking-form {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: "Arial", sans-serif;
+}
+
+.appointment-booking-form h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.appointment-booking-form .form-group {
+    margin-bottom: 15px;
+}
+
+.appointment-booking-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+.appointment-booking-form input[type="text"],
+.appointment-booking-form input[type="date"],
+.appointment-booking-form textarea,
+.appointment-booking-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #555;
+}
+
+.appointment-booking-form textarea {
+    resize: vertical;
+}
+
+.appointment-booking-form button[type="submit"] {
+    display: block;
+    width: 100%;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.appointment-booking-form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Custom select arrow for the time dropdown */
+.appointment-booking-form .form-group select {
+    appearance: none;
+    background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23000000" d="M2 0L0 2h4L2 0zM0 3l2 2 2-2H0z"/></svg>')
+    no-repeat right 10px top 50%;
+    background-size: 8px 10px;
+}
+
+/* Styling for buttons */
+.appointment-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin: 5px;
+}
+
+.appointment-button.edit {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.appointment-button.edit:hover {
+    background-color: #45a049;
+}
+
+.appointment-button.delete {
+    background-color: #f44336;
+    color: white;
+}
+
+.appointment-button.delete:hover {
+    background-color: #e53935;
+}
+

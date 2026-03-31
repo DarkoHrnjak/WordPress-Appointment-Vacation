@@ -1,0 +1,1 @@
+[31-Mar-2026 11:45:26 UTC] WordPress database error Incorrect DATE value: '' for query SELECT appointment_time FROM wp_appointments WHERE appointment_date = '' made by do_action('wp_ajax_fetch_appointment_times'), WP_Hook->do_action, WP_Hook->apply_filters, fetch_appointment_times
