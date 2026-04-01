@@ -46,4 +46,3 @@ Head to **Appointment Booking** in your WordPress sidebar to:
 
 ---
 
-*Hand-crafted with secondary precision by Antigravity.*
